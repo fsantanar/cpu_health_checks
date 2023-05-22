@@ -20,5 +20,6 @@ if not check_disk_usage("/", 2, 10):
     sys.exit(1)
 
 print("Everything ok")
+print("We will soon add a new method here")
 sys.exit(0)
 
