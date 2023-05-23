@@ -29,7 +29,8 @@ def check_cpu_constrained():
 def main():
     checks = [
               (check_reboot, "Pending Reboot"),
-              (check_root_full, "Root partition full")]
+              (check_root_full, "Root partition full"),
+              (check_cpu_constrained, "CPU usage too high")]
     all_passed = True
     for check, msg in checks:
         if check():
