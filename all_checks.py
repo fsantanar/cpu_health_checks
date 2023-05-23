@@ -25,10 +25,13 @@ def main():
     checks = [
               (check_reboot, "Pending Reboot"),
               (check_root_full, "Root partition full")]
+    all_passed = True
     for check, msg in checks:
         if check():
             print(msg)
-            sys.exit(1)
+            all_passed = False
+    if not all_passed:
+        sys.exit(1)
         
 
     print("All checks passed")
