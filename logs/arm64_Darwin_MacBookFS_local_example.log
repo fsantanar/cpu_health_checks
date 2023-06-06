@@ -1,0 +1,36 @@
+2023-06-06 13:04:46,698 - INFO - Input Paramters Used for CPUCheck Object:
+2023-06-06 13:04:46,698 - INFO - {'logs_folder': 'logs/', 'min_gb': 2, 'min_percent_disk': 10, 'folders_to_print': 3, 'max_cpu_usage': 75, 'website_to_check': 'www.google.com', 'max_connection_attempts': 5, 'file_sizes_to_download': ['1MB', '10MB', '100MB', '1GB', '10GB'], 'block_size': 8192, 'sleep_time': 1, 'speed_log_filename': 'download_speed_register.txt', 'minimum_previous_tests': 3, 'std_deviations_limit': 2, 'speed_min_mbps': 1, 'minimum_download_time': 3, 'latency_url': 'www.google.com', 'latency_limit_ms': 100, 'min_percent_battery': 10, 'min_remaining_time_mins': 15}
+2023-06-06 13:04:46,698 - INFO - Starting main function
+2023-06-06 13:04:46,698 - INFO - Running check_no_pending_reboot
+2023-06-06 13:04:46,698 - INFO - No Pending Reboots
+2023-06-06 13:04:46,698 - INFO - Running check_enough_disk_space
+2023-06-06 13:04:47,886 - INFO - 733.3 Gb free (79.16%) out of a total of 926.4 Gb. Home folder is 118.94 Gb
+2023-06-06 13:04:47,887 - INFO - Running check_enough_idle_usage
+2023-06-06 13:04:49,897 - INFO - CPU usage is 2.20%
+2023-06-06 13:04:49,899 - INFO - Running check_network_available
+2023-06-06 13:04:49,908 - INFO - There is internet connection
+2023-06-06 13:04:49,909 - INFO - Running check_good_download_speed
+2023-06-06 13:07:34,274 - INFO - Downloaded at an average speed of 7.153Mb/s: 143.16 secs for a 1024.0 Mb file
+2023-06-06 13:07:34,274 - INFO - Running check_fast_latency
+2023-06-06 13:07:37,310 - INFO - Latency to www.google.com was 5.86 ms which is 'Excellent' according to generally accepted benchmarks
+2023-06-06 13:07:37,311 - INFO - Running check_enough_battery_charge
+2023-06-06 13:07:37,314 - INFO - The battery is plugged and has 100% of charge
+2023-06-06 13:07:37,314 - INFO - Finished main function
+2023-06-06 17:37:32,670 - INFO - Input Paramters Used for CPUCheck Object:
+2023-06-06 17:37:32,672 - INFO - {'logs_folder': 'logs/', 'min_gb': 2, 'min_percent_disk': 10, 'folders_to_print': 3, 'max_cpu_usage': 75, 'website_to_check': 'www.google.com', 'max_connection_attempts': 5, 'file_sizes_to_download': ['1MB', '10MB', '100MB', '1GB', '10GB'], 'block_size': 8192, 'sleep_time': 1, 'speed_log_filename': 'download_speed_register.txt', 'minimum_previous_tests': 3, 'std_deviations_limit': 2, 'speed_min_mbps': 1, 'minimum_download_time': 3, 'latency_url': 'www.google.com', 'latency_limit_ms': 100, 'min_percent_battery': 10, 'min_remaining_time_mins': 15}
+2023-06-06 17:37:32,672 - INFO - Starting main function
+2023-06-06 17:37:32,672 - INFO - Running check_no_pending_reboot
+2023-06-06 17:37:32,672 - INFO - No Pending Reboots
+2023-06-06 17:37:32,679 - INFO - Running check_enough_disk_space
+2023-06-06 17:37:35,374 - INFO - 733.2 Gb free (79.15%) out of a total of 926.4 Gb. Home folder is 118.93 Gb
+2023-06-06 17:37:35,374 - INFO - Running check_enough_idle_usage
+2023-06-06 17:37:37,385 - INFO - CPU usage is 4.90%
+2023-06-06 17:37:37,386 - INFO - Running check_network_available
+2023-06-06 17:37:37,403 - INFO - There is internet connection
+2023-06-06 17:37:37,404 - INFO - Running check_good_download_speed
+2023-06-06 17:37:47,805 - INFO - Downloaded at an average speed of 3.597Mb/s: 2.78 secs for a 10.0 Mb file
+2023-06-06 17:37:47,806 - INFO - Running check_fast_latency
+2023-06-06 17:37:50,833 - INFO - Latency to www.google.com was 5.37 ms which is 'Excellent' according to generally accepted benchmarks
+2023-06-06 17:37:50,834 - INFO - Running check_enough_battery_charge
+2023-06-06 17:37:50,835 - INFO - The battery is plugged and has 100% of charge
+2023-06-06 17:37:50,835 - INFO - Finished main function

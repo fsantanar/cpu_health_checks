@@ -1,0 +1,34 @@
+'default':
+
+  # General
+  logs_folder: 'logs/'
+
+  # check_disk_space
+  min_gb: 2
+  min_percent_disk: 10
+  folders_to_print: 3
+
+  # check_cpu_free
+  max_cpu_usage: 75
+
+  # check_no_network
+  website_to_check: 'www.google.com'
+
+  # check_download_speed
+  max_connection_attempts: 5
+  file_sizes_to_download: ['1MB', '10MB', '100MB', '1GB', '10GB']
+  block_size: 8192
+  sleep_time: 1
+  speed_log_filename: 'download_speed_register.txt'
+  minimum_previous_tests: 3
+  std_deviations_limit: 2
+  speed_min_mbps: 1
+  minimum_download_time: 3
+
+  # check_fast_latency
+  latency_url: 'www.google.com'
+  latency_limit_ms: 100
+
+  # check_enough_battery_charge
+  min_percent_battery: 10
+  min_remaining_time_mins: 15
