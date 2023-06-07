@@ -195,6 +195,7 @@ class CPUCheck:
     def check_enough_idle_usage(self):
         """Returns True if the CPU has enough idle usage."""
         cpu_usage = psutil.cpu_percent(1)
+        print(f'The cpu usage is {cpu_usage}')
         main_message = f'CPU usage is {cpu_usage:.2f}%'
         result = psutil.cpu_percent(1) <= self.max_cpu_usage
         utilities.print_and_log_result(result, main_message, main_message, self.logger)
