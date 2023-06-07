@@ -6,14 +6,23 @@
 # Filename: test_checks.py
 # License: MIT License
 import unittest
-
+import os
 import cpu_health_checks
 
 
 class SystemTestCase(unittest.TestCase):
     def setUp(self):
-        self.cpu_check = cpu_health_checks.CPUCheck(config_file='./../config/configuration.yml',
-                                                    logs_folder='./../logs/')
+        # Get the directory path of the current file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Construct the paths relative to the project root directory
+        project_root = os.path.dirname(os.path.dirname(current_dir))
+        self.config_file_path = os.path.join(project_root, 'cpu_health_checks', 'config',
+                                             'configuration.yml')
+        self.logs_folder_path = os.path.join(project_root, 'cpu_health_checks', 'logs')
+
+        self.cpu_check = cpu_health_checks.CPUCheck(config_file=self.config_file_path,
+                                                    logs_folder=self.logs_folder_path)
 
     def test_disk_space_min_percent_hundred(self):
         """
@@ -52,8 +61,8 @@ class SystemTestCase(unittest.TestCase):
                                             std_deviations_limit=0, speed_min_mbps=0,
                                             minimum_download_time=0, latency_limit_ms=0,
                                             min_percent_battery=0, min_remaining_time_mins=0,
-                                            config_file='./../config/configuration.yml',
-                                            logs_folder='./../logs/')
+                                            config_file=self.config_file_path,
+                                            logs_folder=self.logs_folder_path)
         except Exception as e:
             self.fail(f"Code execution failed with exception: {str(e)}")
 
@@ -87,14 +96,14 @@ class SystemTestCase(unittest.TestCase):
             ValueError: If an argument has an invalid value.
         """
         with self.assertRaises(TypeError):
-            cpu_health_checks.main(config_file='./../config/configuration.yml',
-                                   logs_folder='./../logs/', min_gb='2')
+            cpu_health_checks.main(config_file=self.config_file_path,
+                                   logs_folder=self.logs_folder_path, min_gb='2')
         with self.assertRaises(TypeError):
-            cpu_health_checks.main(config_file='./../config/configuration.yml',
-                                   logs_folder='./../logs/', max_gb=2)
+            cpu_health_checks.main(config_file=self.config_file_path,
+                                   logs_folder=self.logs_folder_path, max_gb=2)
         with self.assertRaises(ValueError):
-            cpu_health_checks.main(config_file='./../config/configuration.yml',
-                                   logs_folder='./../logs/', min_gb=-1)
+            cpu_health_checks.main(config_file=self.config_file_path,
+                                   logs_folder=self.logs_folder_path, min_gb=-1)
 
 
 if __name__ == '__main__':
