@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# Author: Felipe Santana Rojas
+# Date: 2023-06-07
+# Filename: utilities.py
+# License: MIT License
 import inspect
 import os
 import shutil

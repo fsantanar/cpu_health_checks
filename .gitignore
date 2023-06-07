@@ -3,3 +3,6 @@ __pycache__/
 backups/
 logs/arm64_Darwin_MacBookFS_local.log
 logs/download_speed_register.txt
+build/
+cpu_health_checks.egg-info/
+dist/

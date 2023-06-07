@@ -1,0 +1,32 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.10  # Replace with your desired Python version
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Flake8
+        run: flake8 --max-line-length=99
+
+      - name: Run isort
+        run: isort .
+
+      - name: Run tests
+        run: python -m unittest discover -s tests
+

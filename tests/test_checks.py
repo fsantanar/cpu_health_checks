@@ -1,11 +1,19 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# Author: Felipe Santana Rojas
+# Date: 2023-06-07
+# Filename: test_checks.py
+# License: MIT License
 import unittest
-import utilities
-import all_checks
 import inspect
+from cpu_health_checks import utilities
+import cpu_health_checks
 
 class SystemTestCase(unittest.TestCase):
     def setUp(self):
-        self.cpu_check = all_checks.CPUCheck()
+        self.cpu_check = cpu_health_checks.CPUCheck(config_file='./../config/configuration.yml',
+                                                    logs_folder='./../logs/')
 
     def test_disk_space_min_percent_hundred(self):
         """
@@ -38,12 +46,14 @@ class SystemTestCase(unittest.TestCase):
             AssertionError: If the code execution fails with an exception.
         """
         try:
-            result = all_checks.main(min_gb=0, min_percent_disk=0, folders_to_print=0,
-                                     max_cpu_usage=0, max_connection_attempts=1, block_size=1,
-                                     sleep_time=0, minimum_previous_tests=1,
-                                     std_deviations_limit=0, speed_min_mbps=0,
-                                     minimum_download_time=0, latency_limit_ms=0,
-                                     min_percent_battery=0, min_remaining_time_mins=0)
+            result = cpu_health_checks.main(min_gb=0, min_percent_disk=0, folders_to_print=0,
+                                            max_cpu_usage=0, max_connection_attempts=1, block_size=1,
+                                            sleep_time=0, minimum_previous_tests=1,
+                                            std_deviations_limit=0, speed_min_mbps=0,
+                                            minimum_download_time=0, latency_limit_ms=0,
+                                            min_percent_battery=0, min_remaining_time_mins=0,
+                                            config_file='./../config/configuration.yml',
+                                            logs_folder='./../logs/')
         except Exception as e:
             self.fail(f"Code execution failed with exception: {str(e)}")
 
@@ -63,7 +73,7 @@ class SystemTestCase(unittest.TestCase):
             FileNotFoundError: If the config file is not found.
         """
         with self.assertRaises(FileNotFoundError):
-            all_checks.main(config_file='no_one_can_have_this_file')
+            cpu_health_checks.main(config_file='no_one_can_have_this_file')
 
     def test_argument_validity(self):
         """
@@ -77,11 +87,14 @@ class SystemTestCase(unittest.TestCase):
             ValueError: If an argument has an invalid value.
         """
         with self.assertRaises(TypeError):
-            all_checks.main(min_gb='2')
+            cpu_health_checks.main(config_file='./../config/configuration.yml',
+                                   logs_folder='./../logs/', min_gb='2')
         with self.assertRaises(TypeError):
-            all_checks.main(max_gb=2)
+            cpu_health_checks.main(config_file='./../config/configuration.yml',
+                                   logs_folder='./../logs/',max_gb=2)
         with self.assertRaises(ValueError):
-            all_checks.main(min_gb=-1)
+            cpu_health_checks.main(config_file='./../config/configuration.yml',
+                                   logs_folder='./../logs/',min_gb=-1)
 
 
 if __name__ == '__main__':
