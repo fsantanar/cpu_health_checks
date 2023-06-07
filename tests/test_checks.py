@@ -6,9 +6,9 @@
 # Filename: test_checks.py
 # License: MIT License
 import unittest
-import inspect
-from cpu_health_checks import utilities
+
 import cpu_health_checks
+
 
 class SystemTestCase(unittest.TestCase):
     def setUp(self):
@@ -47,8 +47,8 @@ class SystemTestCase(unittest.TestCase):
         """
         try:
             result = cpu_health_checks.main(min_gb=0, min_percent_disk=0, folders_to_print=0,
-                                            max_cpu_usage=0, max_connection_attempts=1, block_size=1,
-                                            sleep_time=0, minimum_previous_tests=1,
+                                            max_cpu_usage=0, max_connection_attempts=1,
+                                            block_size=1, sleep_time=0, minimum_previous_tests=1,
                                             std_deviations_limit=0, speed_min_mbps=0,
                                             minimum_download_time=0, latency_limit_ms=0,
                                             min_percent_battery=0, min_remaining_time_mins=0,
@@ -91,10 +91,10 @@ class SystemTestCase(unittest.TestCase):
                                    logs_folder='./../logs/', min_gb='2')
         with self.assertRaises(TypeError):
             cpu_health_checks.main(config_file='./../config/configuration.yml',
-                                   logs_folder='./../logs/',max_gb=2)
+                                   logs_folder='./../logs/', max_gb=2)
         with self.assertRaises(ValueError):
             cpu_health_checks.main(config_file='./../config/configuration.yml',
-                                   logs_folder='./../logs/',min_gb=-1)
+                                   logs_folder='./../logs/', min_gb=-1)
 
 
 if __name__ == '__main__':

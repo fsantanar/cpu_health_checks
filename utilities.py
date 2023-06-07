@@ -10,15 +10,13 @@ import logging
 import logging.handlers
 import os
 import platform
-import sys
 import re
 import subprocess
 import time
+import urllib.request
 
 import numpy as np
 import yaml
-
-import urllib.request
 from tqdm import tqdm
 
 
@@ -362,7 +360,7 @@ def get_configured_logger(log_object_name, log_file_name):
 def determines_log_filename():
     """
     Determines the log filename based on major system properties.
-    
+
     This way we can facilitate the comparison between the performance
     of the different test across different machines.
     """
@@ -371,6 +369,7 @@ def determines_log_filename():
     system = re.sub(r'\.|\s', '_', computer_info.system)
     node = re.sub(r'\.|\s', '_', computer_info.node)
     return '_'.join([machine, system, node]) + '.log'
+
 
 def check_arguments_validity(arguments):
     """
@@ -406,7 +405,7 @@ def check_arguments_validity(arguments):
                   'sleep_time': 20, 'min_percent_battery': 100}
 
     for argument in arguments:
-        value  = arguments[argument]
+        value = arguments[argument]
         curr_type = type(value)
         allowed_types = arg_types[argument]
         if curr_type not in allowed_types:
@@ -420,4 +419,3 @@ def check_arguments_validity(arguments):
             if value > max_values[argument]:
                 raise ValueError(f'Value {value} of argument {argument} is larger than allowed'
                                  f' maximum of {max_values[argument]}')
-

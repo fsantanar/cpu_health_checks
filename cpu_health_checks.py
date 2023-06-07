@@ -5,8 +5,10 @@
 # Date: 2023-06-07
 # Filename: utilities.py
 # License: MIT License
+import datetime
 import inspect
 import os
+import re
 import shutil
 import socket
 import time
@@ -14,8 +16,6 @@ import time
 import psutil
 
 import utilities
-import datetime
-import re
 
 
 class CPUCheck:
@@ -55,8 +55,8 @@ class CPUCheck:
         Args:
             config_file (str): Path to the configuration file. Default: 'config/configuration.yml'.
             config_mode (str): Configuration mode to use. Default: 'default'.
-            logs_folder (str): Path to the folder where logs are stored. The general log filename is
-                based on major system properties to facilitate comparison of results across
+            logs_folder (str): Path to the folder where logs are stored. The general log filename
+                is based on major system properties to facilitate comparison of results across
                 platforms/computers.
             min_gb (float): Minimum required free disk space in GB.
             min_percent_disk (float): Minimum required free disk space as a percentage.
@@ -128,15 +128,14 @@ class CPUCheck:
               min_remaining_time_mins: 15
         """
 
-
         init_params = inspect.signature(self.__init__).parameters
         locals_copy = locals()
-        init_values = {key: locals_copy[key] for key in init_params if locals_copy[key] is not None}
+        init_values = {k: locals_copy[k] for k in init_params if locals_copy[k] is not None}
         # Here get the input values to be used to instantiate the CPUCheck object
-        input_values = utilities.get_input_params(init_params, init_values, config_file, config_mode)
+        input_values = utilities.get_input_params(init_params, init_values,
+                                                  config_file, config_mode)
         # Here we check that the arguments have the proper type and are within accepted limits
         utilities.check_arguments_validity(input_values)
-
 
         for key, val in input_values.items():
             setattr(self, key, val)  # Put all the values in the dictionary as object attributes
@@ -163,7 +162,6 @@ class CPUCheck:
         Checks the disk space available, and if the disk space is above the minimum limit
         and the fraction of free space is above the minimum required then it returns True
 
-        
         If there is no enough space it gives you a hint on how to free space indicating
         the largest home subfolders.
         """
@@ -339,7 +337,7 @@ class CPUCheck:
     def check_enough_battery_charge(self):
         """
         Checks battery level, plugging, and time remaining.
-        
+
         Returns True if the battery has enough charge and the remaining time is not too low.
         If not, returns False and checks if the battery is plugged, if it is it recommends to
         check battery health, if it is not, it recommends to plug it.
@@ -485,4 +483,3 @@ def main(**kwargs):
 
 if __name__ == '__main__':
     main()
-
