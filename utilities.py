@@ -290,8 +290,8 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
     # If there are enough previous test to perform a significant comparison between the current
     # results and prior results it checks whether the current result is less than the average
     # minus a given number of times the standard deviation and if it is sets speed_outlier to True
+    speed_outlier = False
     if enough_previous_tests:
-        speed_outlier = False
         with os.popen(f"awk '{{print $6}}' {speed_log_filename}") as prior_speeds_proc:
             prior_speeds_command_output = prior_speeds_proc.read().split()[1:-1]
         prior_speeds = list(map(float, prior_speeds_command_output))
