@@ -197,7 +197,6 @@ class CPUCheck:
         cpu_usage = psutil.cpu_percent(1)
         if cpu_usage == 0:
             cpu_usage = 0.01  # Just to avoid edge problems in tests
-        print(f'The cpu usage is {cpu_usage}')
         main_message = f'CPU usage is {cpu_usage:.2f}%'
         result = psutil.cpu_percent(1) <= self.max_cpu_usage
         utilities.print_and_log_result(result, main_message, main_message, self.logger)
