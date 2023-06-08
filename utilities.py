@@ -175,7 +175,7 @@ def get_folder_size(folder):
         try:
             output = subprocess.check_output(command, shell=True, universal_newlines=True,
                                              stderr=subprocess.DEVNULL)
-            if len(output.split) != 0:
+            if len(output.split()) != 0:
                 # Here we remove the commas and convert to integer
                 size = int(output.split()[-2].replace(',', '')) / 2**20
                 return size
