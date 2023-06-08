@@ -242,7 +242,7 @@ def downloads_file(url, block_size, max_attempts, logger, track_progress):
         progress_bar = tqdm(total=file_size, unit='B', unit_scale=True, ncols=80)
 
     # Here we download the file into dev/null splitting in it into blocks and breaking when is over
-    with open("/dev/null", 'wb') as file:
+    with open(os.devnull, 'wb') as file:
         while True:
             buffer = response.read(block_size)
             if not buffer:
