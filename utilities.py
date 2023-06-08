@@ -172,20 +172,27 @@ def get_folder_size(folder):
     if os.name == 'nt':  # Windows
         folder = folder.replace('"', r'\"')  # Escape double quotes
         command = f'dir /s /a /q "{folder}" | find /i "File(s)"'
-        output = subprocess.check_output(command, shell=True, universal_newlines=True,
-                                         stderr=subprocess.DEVNULL)
-        if output.strip() == '':
-            size = 0
-        else:
-            size_str = output.split()[-2].replace(',', '')  # Remove commas
-            size = int(size_str) / 2**20  # Convert to MB
+        try:
+            output = subprocess.check_output(command, shell=True, universal_newlines=True,
+                                             stderr=subprocess.DEVNULL)
+            if len(output.split) != 0:
+                # Here we remove the commas and convert to integer
+                size = int(output.split()[-2].replace(',', '')) / 2**20
+                return size
+            else:
+                return 0
+
+        except subprocess.CalledProcessError:
+            # Handle the exception gracefully (e.g., return a default value)
+            return 0
+
     else:  # Unix-like systems
         command = 'du -sk "{}" 2>/dev/null || true'.format(folder)
         output = subprocess.check_output(command, shell=True, universal_newlines=True)
         if output.strip() == '':
             size = 0
         else:
-            size = int(output.split()[0]) / 2**10  # Convert to MB
+            size = int(output.split()[0]) / 2**20  # Convert to MB
 
     return size
 
