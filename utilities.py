@@ -150,19 +150,42 @@ def get_home_folder_info():
     Returns:
         tuple: A tuple containing the home folder usage (in MB) and sizes of subfolders.
     """
-    home_usage_output = run_command('du -sk $HOME')
-    home_usage = int(home_usage_output.stdout.split('\t')[0]) / 2**20
-    home_subfolders_output = run_command('ls -d $HOME/*/')
-
-    # For each subfolder of HOME folder (depth=1) we calculate its size
-    # and store its name and size in the subfolders_size dictionary
-    subfolders_sizes = {}
-    for subfolder in home_subfolders_output.stdout.split():
-        usage_output = run_command('du -sk ' + subfolder)
-        usage_gb = int(usage_output.stdout.split('\t')[0]) / 2**20
-        subfolders_sizes[subfolder] = usage_gb
+    home = os.path.expanduser("~")
+    home_usage = get_folder_size(home)
+    subfolders = [os.path.join(home, folder) for folder in os.listdir(home)
+                  if os.path.isdir(os.path.join(home, folder))]
+    subfolders_sizes = {folder: get_folder_size(folder) for folder in subfolders}
 
     return home_usage, subfolders_sizes
+
+
+def get_folder_size(folder):
+    """
+    Get the size of a folder in bytes if there is permission to check it otherwise returns 0
+
+    Args:
+        folder (str): Path to the folder.
+
+    Returns:
+        int: Size of the folder in bytes.
+    """
+    if os.name == 'nt':  # Windows
+        folder = folder.replace('"', r'\"')  # Escape double quotes
+        command = 'dir /s /a /q "{}" | find /i "File(s)"'.format(folder)
+        output = subprocess.check_output(command, shell=True, universal_newlines=True)
+        if output.strip() == '':
+            size = 0
+        else:
+            size = int(output.split()[-2]) / 2**20  # Convert to MB
+    else:  # Unix-like systems
+        command = 'du -sk "{}" 2>/dev/null || true'.format(folder)
+        output = subprocess.check_output(command, shell=True, universal_newlines=True)
+        if output.strip() == '':
+            size = 0
+        else:
+            size = int(output.split()[0]) / 2**10  # Convert to MB
+
+    return size
 
 
 def get_largest_subfolders(folders_to_print, subfolders_sizes):
