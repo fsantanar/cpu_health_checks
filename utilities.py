@@ -171,8 +171,9 @@ def get_folder_size(folder):
     """
     if os.name == 'nt':  # Windows
         folder = folder.replace('"', r'\"')  # Escape double quotes
-        command = f'dir /s /a /q "{folder}" 2> nul | find /i "File(s)"'
-        output = subprocess.check_output(command, shell=True, universal_newlines=True)
+        command = f'dir /s /a /q "{folder}" | find /i "File(s)"'
+        output = subprocess.check_output(command, shell=True, universal_newlines=True,
+                                         stderr=subprocess.DEVNULL)
         if output.strip() == '':
             size = 0
         else:
