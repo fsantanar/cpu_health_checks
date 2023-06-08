@@ -161,7 +161,7 @@ def get_home_folder_info():
 
 def get_folder_size(folder):
     """
-    Get the size of a folder in bytes if there is permission to check it otherwise returns 0
+    Get the size of a folder in bytes.
 
     Args:
         folder (str): Path to the folder.
@@ -176,7 +176,8 @@ def get_folder_size(folder):
         if output.strip() == '':
             size = 0
         else:
-            size = int(output.split()[-2]) / 2**20  # Convert to MB
+            size_str = output.split()[-2].replace(',', '')  # Remove commas
+            size = int(size_str) / 2**20  # Convert to MB
     else:  # Unix-like systems
         command = 'du -sk "{}" 2>/dev/null || true'.format(folder)
         output = subprocess.check_output(command, shell=True, universal_newlines=True)
