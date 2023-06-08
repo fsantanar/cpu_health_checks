@@ -257,7 +257,6 @@ def downloads_file(url, block_size, max_attempts, logger, track_progress):
     return True
 
 
-
 def handle_final_download_test(logs_folder, speed_log_filename, size, download_time,
                                download_speed_mbps, minimum_previous_tests, std_deviations_limit,
                                speed_min_mbps):
