@@ -12,4 +12,5 @@ setup(
         'PyYAML==6.0',
         'tqdm==4.62.3',
     ],
+    python_requires='>=3.5',
 )
