@@ -252,10 +252,10 @@ def downloads_file(url, block_size, max_attempts, logger, track_progress):
                 progress_bar.update(len(buffer))
 
     response.close()
-    return True
-
     if track_progress:
         progress_bar.close()
+    return True
+
 
 
 def handle_final_download_test(logs_folder, speed_log_filename, size, download_time,
@@ -323,12 +323,13 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
     # results and prior results it checks whether the current result is less than the average
     # minus a given number of times the standard deviation and if it is sets speed_outlier to True
     speed_outlier = False
+    err_msg = ''
+
     if enough_previous_tests:
         with os.popen(f"awk '{{print $6}}' {speed_log_filename}") as prior_speeds_proc:
             prior_speeds_command_output = prior_speeds_proc.read().split()[1:-1]
         prior_speeds = list(map(float, prior_speeds_command_output))
         avg_speed, speed_std = np.average(prior_speeds), np.std(prior_speeds)
-        err_msg = ''
 
         if download_speed_mbps < (avg_speed - std_deviations_limit * speed_std):
             err_msg += (f' is too low compared to regular values '
