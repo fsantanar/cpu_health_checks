@@ -11,8 +11,9 @@ import os
 import re
 import shutil
 import socket
-import time
 import sys
+import time
+
 import psutil
 
 import utilities
@@ -483,6 +484,7 @@ def main(**kwargs):
     print('#'*28)
     checkobj.logger.info("Finished main function")
     return results
+
 
 # If the user specific the 'auto' argument when running
 # Then automatically run main() with no extra arguments
