@@ -12,7 +12,7 @@ import re
 import shutil
 import socket
 import time
-
+import sys
 import psutil
 
 import utilities
@@ -168,8 +168,9 @@ class CPUCheck:
         du = shutil.disk_usage('/')
         percent_free = 100 * du.free / du.total
         gigabytes_free = du.free / 2**30
-        # Here we calculate the size of home and its subfolders
-        home_usage, subfolders_sizes = utilities.get_home_folder_info()
+        # Here we calculate the size of home
+        home = os.path.expanduser("~")
+        home_usage = utilities.get_folder_size(home)
 
         main_message = (f'{gigabytes_free:.1f} Gb free ({percent_free:.2f}%) out of a total '
                         f'of {du.total/2**30:.1f} Gb. Home folder is {home_usage:.2f} Gb')
@@ -181,6 +182,7 @@ class CPUCheck:
             utilities.print_error('Disk too close to full', self.logger)
 
             # Here we calculate the largest subfolders to print as indicator on how to clear space
+            subfolders_sizes = utilities.get_home_subfolder_info()
             largest_subfolders = utilities.get_largest_subfolders(self.folders_to_print,
                                                                   subfolders_sizes)
             utilities.print_error('To give a hint on where to clear space, the largest home'
@@ -482,6 +484,8 @@ def main(**kwargs):
     checkobj.logger.info("Finished main function")
     return results
 
-
-# if __name__ == '__main__':
-#     main()
+# If the user specific the 'auto' argument when running
+# Then automatically run main() with no extra arguments
+main_args = sys.argv
+if main_args[-1] == 'auto':
+    main()

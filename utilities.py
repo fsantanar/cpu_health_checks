@@ -143,20 +143,19 @@ def print_and_log_result(result, message_passed, message_failed, logger):
         logger.info(message_failed)
 
 
-def get_home_folder_info():
+def get_home_subfolder_info():
     """
-    Get information about the home folder.
+    Get information about the home subfolders.
 
     Returns:
-        tuple: A tuple containing the home folder usage (in MB) and sizes of subfolders.
+        dict: A dict containing the home subfolders names and sizes.
     """
     home = os.path.expanduser("~")
-    home_usage = get_folder_size(home)
     subfolders = [os.path.join(home, folder) for folder in os.listdir(home)
                   if os.path.isdir(os.path.join(home, folder))]
     subfolders_sizes = {folder: get_folder_size(folder) for folder in subfolders}
 
-    return home_usage, subfolders_sizes
+    return subfolders_sizes
 
 
 def get_folder_size(folder):
