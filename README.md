@@ -15,3 +15,8 @@ Introduction explaining purpose of repo
 Instructions on how to install and requisites for both cloning and pip installing
 
 Examples of usage
+
+
+Pendings:
+
+Add documentation like low-level api, docs/sphynx folder, and readthedocs
