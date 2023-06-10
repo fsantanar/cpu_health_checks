@@ -20,3 +20,7 @@ Examples of usage
 Pendings:
 
 Add documentation like low-level api, docs/sphynx folder, and readthedocs
+
+Test:
+
+Just adding this text to test the branch protection rule of main
