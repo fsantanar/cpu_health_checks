@@ -1,7 +1,7 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../cpu_health_checks'))
+sys.path.insert(0, os.path.abspath('../../cpu_health_checks'))
 
 # Configuration file for the Sphinx documentation builder.
 #
