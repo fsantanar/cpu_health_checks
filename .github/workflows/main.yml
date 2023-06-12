@@ -80,7 +80,7 @@ jobs:
 
       - name: Set up project
         run: |
-          echo "PYTHONPATH=$(python -c 'import os; print(os.path.abspath(os.path.join(os.getcwd(), \"..\")))')" >> $GITHUB_ENV
+          echo "::set-env name=PYTHONPATH::$(python -c 'import os; print(os.path.abspath(os.path.join(os.getcwd(), \"..\")))')"
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -89,4 +89,6 @@ jobs:
         run: isort .
 
       - name: Run tests (Windows)
+        env:
+          PYTHONPATH: ${{ env.PYTHONPATH }}
         run: python -m unittest discover -s tests
