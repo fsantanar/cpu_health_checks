@@ -6,3 +6,5 @@ logs/download_speed_register.txt
 build/
 cpu_health_checks.egg-info/
 dist/
+make.bat
+Makefile

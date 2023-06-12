@@ -268,19 +268,18 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
 
 
     Args:
-        logs_folder (str): The folder to store the log files.
-        speed_log_filename (str): The name of the speed log file.
-        size (str): The size of the file downloaded to measure speed.
-        download_time (float): The download time in seconds.
-        download_speed_mbps (float): The download speed in Mbps.
+        logs_folder (str): The folder to store the log files.\n
+        speed_log_filename (str): The name of the speed log file.\n
+        size (str): The size of the file downloaded to measure speed.\n
+        download_time (float): The download time in seconds.\n
+        download_speed_mbps (float): The download speed in Mbps.\n
         minimum_previous_tests (int): The minimum number of previous tests required to compare
-            current results with results usually obtained.
+        current results with results usually obtained.\n
         std_deviations_limit (int): The number of standard deviations used for comparison.
-            If the current download speed is less than the average speed minus
-            'std_deviations_limit' times the standard deviation of the speed, this function returns
-            False which implied that check_download_speed will not pass.
-
-        speed_min_mbps (float): The minimum download speed threshold in Mbps.
+        If the current download speed is less than the average speed minus
+        'std_deviations_limit' times the standard deviation of the speed, this function returns
+        False which implied that check_download_speed will not pass.\n
+        speed_min_mbps (float): The minimum download speed threshold in Mbps.\n
 
     Returns:
         bool: True if there is an error, False otherwise.

@@ -16,7 +16,7 @@ import time
 
 import psutil
 
-import utilities
+import cpu_health_checks.utilities as utilities
 
 
 class CPUCheck:
@@ -24,14 +24,16 @@ class CPUCheck:
     A class for performing CPU-related checks and tests.
 
     Methods:
-        check_no_pending_reboot(): Returns boolean indicating if the PC has no pending reboots.
-        check_enough_disk_space(): Returns boolean indicating if there is enough disk space.
-        check_enough_idle_usage(): Returns boolean indicating if the CPU has enough idle usage.
-        check_network_available(): Returns boolean indicating if network is available
+        check_no_pending_reboot(): Returns boolean indicating if the PC has no pending reboots.\n
+        check_enough_disk_space(): Returns boolean indicating if there is enough disk space.\n
+        check_enough_idle_usage(): Returns boolean indicating if the CPU has enough idle usage.\n
+        check_network_available(): Returns boolean indicating if network is available.\n
         check_good_download_speed(): Returns boolean indicating if the download speed is above a
-            threshold and is not a low outlier.
-        check_fast_latency(): Returns boolean indicating if latency is fast.
-        check_enough_battery_charge(): Returns boolean indicating if there is enough battery left.
+        threshold and is not a low outlier.\n
+        check_fast_latency(): Returns boolean indicating if latency is fast.\n
+        check_enough_battery_charge(): Returns boolean indicating if there is enough
+        battery charge left.\n
+
     """
 
     def __init__(self, config_file='config/configuration.yml', config_mode='default',
@@ -42,7 +44,7 @@ class CPUCheck:
                  speed_min_mbps=None, minimum_download_time=None, latency_url=None,
                  latency_limit_ms=None, min_percent_battery=None, min_remaining_time_mins=None):
         """
-        CPUCheck object constructor.
+        **CPUCheck object __init__ constructor:**
 
         This method creates the CPUCheck object using multiple input parameters that can be defined
         explicitly when calling the constructor or if not taken from the 'config_mode' key of the
@@ -54,45 +56,50 @@ class CPUCheck:
         It also starts a logger to store the results of the check methods.
 
         Args:
-            config_file (str): Path to the configuration file. Default: 'config/configuration.yml'.
-            config_mode (str): Configuration mode to use. Default: 'default'.
+            config_file (str): Path to the configuration file.
+            Default: 'config/configuration.yml'.\n
+            config_mode (str): Configuration mode to use. Default: 'default'.\n
             logs_folder (str): Path to the folder where logs are stored. The general log filename
-                is based on major system properties to facilitate comparison of results across
-                platforms/computers.
-            min_gb (float): Minimum required free disk space in GB.
-            min_percent_disk (float): Minimum required free disk space as a percentage.
-            folders_to_print (int): Number of largest subfolders to print.
-            max_cpu_usage (float): Maximum allowed CPU usage percentage.
-            website_to_check (str): Website URL to check network connectivity.
-            max_connection_attempts (int): Number of times to attempt connection before giving up.
+            is based on major system properties to facilitate comparison of results across
+            platforms/computers.\n
+            min_gb (float): Minimum required free disk space in GB.\n
+            min_percent_disk (float): Minimum required free disk space as a percentage.\n
+            folders_to_print (int): Number of largest subfolders to print.\n
+            max_cpu_usage (float): Maximum allowed CPU usage percentage.\n
+            website_to_check (str): Website URL to check network connectivity.\n
+            max_connection_attempts (int): Number of times to attempt connection
+            before giving up.\n
             file_sizes_to_download (list): List of file sizes to download for testing.
-                The full list of sizes from which you can choose is:
-                1MB, 10MB, 100MB, 1GB, 10GB, 50GB, 100GB, and 1000GB.
-                Although very large files are not recommended due to large download times.
-            block_size (int): Block size for downloading files.
+            The full list of sizes from which you can choose is:
+            1MB, 10MB, 100MB, 1GB, 10GB, 50GB, 100GB, and 1000GB.
+            Although very large files are not recommended due to large download times.\n
+            block_size (int): Block size for downloading files.\n
             sleep_time (float): Sleep time between download requests used to avoid overloading the
-                server.
-            speed_log_filename (str): Name of the download speed log file.
+            server.\n
+            speed_log_filename (str): Name of the download speed log file.\n
             minimum_previous_tests (int): Minimum number of previous download tests to perform
-                comparison between current and previous values obtained.
-            std_deviations_limit (float): Standard deviations limit for comparing download speeds.
-                check_good_download_speed will not pass if the current download speed is less than
-                the average speed minus 'std_deviations_limit' times the standard deviation of the
-                speed.
-            speed_min_mbps (float): Minimum required download speed in Mbps.
+            comparison between current and previous values obtained.\n
+            std_deviations_limit (float): Standard deviations limit
+            for comparing download speeds.\n
+            check_good_download_speed will not pass if the current download speed is less than
+            the average speed minus 'std_deviations_limit' times the standard deviation of the
+            speed.\n
+            speed_min_mbps (float): Minimum required download speed in Mbps.\n
             minimum_download_time (float): Minimum required download time in seconds.
-                In check_good_download_speed, files are downloaded from smaller to larger to ensure
-                that a file is large enough for accurate speed measurement but not too large to
-                take too long. If the download time of a file is more than 'minimum_download_time',
-                the final file used to measure the download speed will be the next file in terms of
-                size, which is usually 10 times bigger.
-            latency_url (str): URL to be used for latency check.
-            latency_limit_ms (float): High limit in milliseconds for the latency check to pass.
-            min_percent_battery (float): Minimum battery charge as a percentage.
-            min_remaining_time_mins (float): Minimum remaining battery charge in minutes.
+            In check_good_download_speed, files are downloaded from smaller to larger to ensure
+            that a file is large enough for accurate speed measurement but not too large to
+            take too long. If the download time of a file is more than 'minimum_download_time',
+            the final file used to measure the download speed will be the next file in terms of
+            size, which is usually 10 times bigger.\n
+            latency_url (str): URL to be used for latency check.\n
+            latency_limit_ms (float): High limit in milliseconds for the latency check to pass.\n
+            min_percent_battery (float): Minimum battery charge as a percentage.\n
+            min_remaining_time_mins (float): Minimum remaining battery charge in minutes.\n
 
 
         Example configuration file ('config/configuration.yml'):
+
+        .. code-block:: yaml
 
             'default':
               # General
@@ -382,9 +389,9 @@ def main(**kwargs):
     """
     The main function to execute the cpu checks based on the provided configuration.
 
-    It starts by instantiating a CPUCheck object which by default (no **kwargs provided
+    It starts by instantiating a CPUCheck object which by default (no kwargs provided
     at call time) is done taking all the input parameters from the 'default' main key
-    of the configuration file config/configuration.yml. Then, if any **kwarg is provided
+    of the configuration file config/configuration.yml. Then, if any kwarg is provided
     when calling the function, that parameter overrides the value in the configuration file.
 
     Then it runs a series of cpu health checks, which return True if the test pass and False
@@ -400,7 +407,7 @@ def main(**kwargs):
 
 
     Args:
-        **kwargs: Series of optional kwargs to be used for instantiating the CPUCheck object.
+        kwargs: Series of optional kwargs to be used for instantiating the CPUCheck object.
             These parameters have to be part of the CPUCheck.__init__ signature
             (see help CPUCheck.__init__ for more information), and they override the value
             present in the configuration file.
@@ -414,13 +421,15 @@ def main(**kwargs):
             to instantiate the CPUCheck object.
 
     Examples:
-        # Example 1: Running main without any kwargs
+        # Example 1: Running main without any kwargs\n
         >>> results = main()
-        # Output: {'check_no_pending_reboot': True, 'check_enough_disk_space': True, ...}
+        >>> result
+        {'check_no_pending_reboot': True, 'check_enough_disk_space': True, ...}
 
-        # Example 2: Running main with specific (and extreme) kwargs
+        # Example 2: Running main with specific (and extreme) kwargs\n
         >>> results = main(min_percent_disk=100, max_cpu_usage=100)
-        # Output: {..., 'check_enough_disk_space': False, 'check_enough_idle_usage': True, ...}
+        >>> result
+        {..., 'check_enough_disk_space': False, 'check_enough_idle_usage': True, ...}
 
     """
 
