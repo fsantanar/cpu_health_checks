@@ -24,7 +24,7 @@ jobs:
 
       - name: Set up project
         run: |
-          echo "::set-env name=PYTHONPATH::${{ github.workspace }}"
+          echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -52,7 +52,7 @@ jobs:
 
       - name: Set up project
         run: |
-          echo "::set-env name=PYTHONPATH::${{ github.workspace }}"
+          echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -80,7 +80,7 @@ jobs:
 
       - name: Set up project
         run: |
-          echo "::set-env name=PYTHONPATH::${{ github.workspace }}"
+          echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
