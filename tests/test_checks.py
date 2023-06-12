@@ -5,9 +5,10 @@
 # Date: 2023-06-07
 # Filename: test_checks.py
 # License: MIT License
-import unittest
 import os
-import cpu_health_checks
+import unittest
+
+import cpu_health_checks.cpu_health as cpu_health
 
 
 class SystemTestCase(unittest.TestCase):
@@ -21,8 +22,8 @@ class SystemTestCase(unittest.TestCase):
                                              'configuration.yml')
         self.logs_folder_path = os.path.join(project_root, 'cpu_health_checks', 'logs')
 
-        self.cpu_check = cpu_health_checks.CPUCheck(config_file=self.config_file_path,
-                                                    logs_folder=self.logs_folder_path)
+        self.cpu_check = cpu_health.CPUCheck(config_file=self.config_file_path,
+                                             logs_folder=self.logs_folder_path)
 
     def test_disk_space_min_percent_hundred(self):
         """
@@ -55,14 +56,14 @@ class SystemTestCase(unittest.TestCase):
             AssertionError: If the code execution fails with an exception.
         """
         try:
-            result = cpu_health_checks.main(min_gb=0, min_percent_disk=0, folders_to_print=0,
-                                            max_cpu_usage=0, max_connection_attempts=1,
-                                            block_size=1, sleep_time=0, minimum_previous_tests=1,
-                                            std_deviations_limit=0, speed_min_mbps=0,
-                                            minimum_download_time=0, latency_limit_ms=0,
-                                            min_percent_battery=0, min_remaining_time_mins=0,
-                                            config_file=self.config_file_path,
-                                            logs_folder=self.logs_folder_path)
+            result = cpu_health.main(min_gb=0, min_percent_disk=0, folders_to_print=0,
+                                     max_cpu_usage=0, max_connection_attempts=1,
+                                     block_size=1, sleep_time=0, minimum_previous_tests=1,
+                                     std_deviations_limit=0, speed_min_mbps=0,
+                                     minimum_download_time=0, latency_limit_ms=0,
+                                     min_percent_battery=0, min_remaining_time_mins=0,
+                                     config_file=self.config_file_path,
+                                     logs_folder=self.logs_folder_path)
         except Exception as e:
             self.fail(f"Code execution failed with exception: {str(e)}")
 
@@ -82,7 +83,7 @@ class SystemTestCase(unittest.TestCase):
             FileNotFoundError: If the config file is not found.
         """
         with self.assertRaises(FileNotFoundError):
-            cpu_health_checks.main(config_file='no_one_can_have_this_file')
+            cpu_health.main(config_file='no_one_can_have_this_file')
 
     def test_argument_validity(self):
         """
@@ -96,14 +97,14 @@ class SystemTestCase(unittest.TestCase):
             ValueError: If an argument has an invalid value.
         """
         with self.assertRaises(TypeError):
-            cpu_health_checks.main(config_file=self.config_file_path,
-                                   logs_folder=self.logs_folder_path, min_gb='2')
+            cpu_health.main(config_file=self.config_file_path,
+                            logs_folder=self.logs_folder_path, min_gb='2')
         with self.assertRaises(TypeError):
-            cpu_health_checks.main(config_file=self.config_file_path,
-                                   logs_folder=self.logs_folder_path, max_gb=2)
+            cpu_health.main(config_file=self.config_file_path,
+                            logs_folder=self.logs_folder_path, max_gb=2)
         with self.assertRaises(ValueError):
-            cpu_health_checks.main(config_file=self.config_file_path,
-                                   logs_folder=self.logs_folder_path, min_gb=-1)
+            cpu_health.main(config_file=self.config_file_path,
+                            logs_folder=self.logs_folder_path, min_gb=-1)
 
 
 if __name__ == '__main__':

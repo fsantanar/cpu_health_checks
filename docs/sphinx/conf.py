@@ -19,7 +19,10 @@ release = '1.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary']
+
+# Mock imports for cpu_health and utilities modules
+autodoc_mock_imports = ['cpu_health', 'utilities']
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
@@ -30,5 +33,20 @@ master_doc = 'index'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+
+
+# Exclude the bcolors class from documentation
+def skip_member_handler(app, what, name, obj, skip, options):
+    if name == 'bcolors':
+        return True
+    return None
+
+
+def setup(app):
+    app.connect("autodoc-skip-member", skip_member_handler)
+
+
+# Include both class docstring and __init__ docstring
+autoclass_content = 'both'
