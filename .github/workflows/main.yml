@@ -91,7 +91,7 @@ jobs:
           echo "PYTHONPATH=${env:PYTHONPATH}".replace("/", "\\") >> ${env:GITHUB_ENV}
           echo "Content of GITHUB ENV after adding workspace parent with replaced slashes:
           echo ${env:GITHUB_ENV}
-          echo "Now trying to get the content with cat in case echo didn't work"
+          echo "Now trying to get the content with cat in case echo didnt work"
           cat ${env:GITHUB_ENV}
 
       - name: Run Flake8
