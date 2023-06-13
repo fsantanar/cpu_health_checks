@@ -23,7 +23,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Set up project (Linux)
-        run: echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
+        run: |
+          echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
+          echo "Content of GITHUB ENV in Linux"
+          cat ${GITHUB_ENV}
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -82,16 +85,14 @@ jobs:
           echo "Original Content of PYTHONPATH:"
           echo ${PYTHONPATH}
           echo "Original Content of GITHUB ENV:"
-          echo ${env:GITHUB_ENV}
+          cat ${env:GITHUB_ENV}
           echo "PYTHONPATH=${{ github.workspace }}\\.." >> ${env:GITHUB_ENV}
           echo "Content of GITHUB ENV after adding workspace parent:"
-          echo ${env:GITHUB_ENV}
+          cat ${env:GITHUB_ENV}
           echo "Now setting the PYTHONPATH variable to:"
           echo "${env:PYTHONPATH}.replace('/', '\\')"
           echo "PYTHONPATH=${env:PYTHONPATH}.replace('/', '\\')" >> ${env:GITHUB_ENV}
           echo "Content of GITHUB ENV after adding workspace parent with replaced slashes:"
-          echo ${env:GITHUB_ENV}
-          echo "Now trying cat in case echo didnt work"
           cat ${env:GITHUB_ENV}
 
       - name: Run Flake8
