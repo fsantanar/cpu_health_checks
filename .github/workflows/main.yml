@@ -78,7 +78,11 @@ jobs:
 
       - name: Set up project (Windows)
         run: |
-          echo "PYTHONPATH=$(echo %cd%\..\)" >> $GITHUB_ENV
+          echo "Setting PYTHONPATH..."
+          echo "PYTHONPATH=${{ github.workspace }}\\.." >> $GITHUB_ENV
+          echo "Added original and now replacing slashes..."
+          echo "PYTHONPATH=$PYTHONPATH".replace("\\", "/") >> $GITHUB_ENV
+          echo "PYTHONPATH set successfully."
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -88,3 +92,5 @@ jobs:
 
       - name: Run tests (Windows)
         run: python -m unittest discover -s tests
+
+
