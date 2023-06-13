@@ -22,9 +22,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Set up project
-        run: |
-          echo "PYTHONPATH=$(python -c 'import os; print(os.path.abspath(os.path.join(os.getcwd(), \"..\")))')" >> $GITHUB_ENV
+      - name: Set up project (Linux)
+        run: echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -50,9 +49,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Set up project
-        run: |
-          echo "PYTHONPATH=$(python -c 'import os; print(os.path.abspath(os.path.join(os.getcwd(), \"..\")))')" >> $GITHUB_ENV
+      - name: Set up project (macOS)
+        run: echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -78,9 +76,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Set up project
+      - name: Set up project (Windows)
         run: |
-          echo "::set-env name=PYTHONPATH::$(python -c 'import os; print(os.path.abspath(os.path.join(os.getcwd(), \"..\")))')"
+          echo "PYTHONPATH=$(powershell -Command \"(Get-Location).Path | ForEach-Object { $_ + '\\..' } | ForEach-Object { [System.IO.Path]::GetFullPath($_) } | ForEach-Object { $_ -replace '\\\\', '/' }\")" >> $GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -89,6 +87,4 @@ jobs:
         run: isort .
 
       - name: Run tests (Windows)
-        env:
-          PYTHONPATH: ${{ env.PYTHONPATH }}
         run: python -m unittest discover -s tests
