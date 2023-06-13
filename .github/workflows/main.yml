@@ -79,15 +79,12 @@ jobs:
       - name: Set up project (Windows)
         run: |
           echo "Setting PYTHONPATH..."
-          echo "Original PYTHONPATH: $PYTHONPATH"
-          echo "Original PYTHONPATH (replacing forward slashes with backslashes): $PYTHONPATH".replace("/", "\\")
-          echo "Setting modified PYTHONPATH..."
-          echo "PYTHONPATH=${{ github.workspace }}\\.." >> $GITHUB_ENV
-          echo "Modified PYTHONPATH: ${{ github.workspace }}\\.."
-          echo "Modified PYTHONPATH (replacing forward slashes with backslashes): ${{ github.workspace }}\\..".replace("/", "\\")
+          echo "PYTHONPATH=${{ github.workspace }}\\.." >> ${env:GITHUB_ENV}
+          echo "Added original and now replacing slashes..."
+          echo "PYTHONPATH=${env:PYTHONPATH}".replace("\\", "/") >> ${env:GITHUB_ENV}
           echo "PYTHONPATH set successfully."
-          echo "Content of $GITHUB_ENV:"
-          cat $GITHUB_ENV
+          echo "Content of ${env:GITHUB_ENV}:"
+          cat ${env:GITHUB_ENV}
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
