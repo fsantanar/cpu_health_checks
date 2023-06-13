@@ -8,3 +8,4 @@ cpu_health_checks.egg-info/
 dist/
 make.bat
 Makefile
+docs/sphinx/requirements.txt
