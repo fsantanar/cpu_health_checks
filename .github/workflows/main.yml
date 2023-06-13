@@ -81,11 +81,10 @@ jobs:
           echo "Setting PYTHONPATH..."
           echo "Original PYTHONPATH: $PYTHONPATH"
           echo "Original PYTHONPATH (replacing forward slashes with backslashes): $PYTHONPATH".replace("/", "\\")
-          echo "Original PYTHONPATH (full replace): $PYTHONPATH".replace("$PYTHONPATH", "${{ github.workspace }}\\..")
           echo "Setting modified PYTHONPATH..."
           echo "PYTHONPATH=${{ github.workspace }}\\.." >> $GITHUB_ENV
-          echo "Modified PYTHONPATH: $PYTHONPATH"
-          echo "Modified PYTHONPATH (replacing forward slashes with backslashes): $PYTHONPATH".replace("/", "\\")
+          echo "Modified PYTHONPATH: ${{ github.workspace }}\\.."
+          echo "Modified PYTHONPATH (replacing forward slashes with backslashes): ${{ github.workspace }}\\..".replace("/", "\\")
           echo "PYTHONPATH set successfully."
           echo "Content of $GITHUB_ENV:"
           cat $GITHUB_ENV
