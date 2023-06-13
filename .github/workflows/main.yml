@@ -24,8 +24,10 @@ jobs:
 
       - name: Set up project (Linux)
         run: |
+          echo "Original Content of GITHUB ENV in Linux"
+          cat ${GITHUB_ENV}
           echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
-          echo "Content of GITHUB ENV in Linux"
+          echo "Final Content of GITHUB ENV in Linux"
           cat ${GITHUB_ENV}
 
       - name: Run Flake8
@@ -81,6 +83,10 @@ jobs:
 
       - name: Set up project (Windows)
         run: |
+          echo "Original GITHUB Workspace variable:"
+          echo ${{ github.workspace}}
+          echo "Trying to replace text in workspace variable with Python replace"
+          echo "${{ github.workspace}}.replace('checks','ch')"
           echo "Setting PYTHONPATH..."
           echo "Original Content of PYTHONPATH:"
           echo ${PYTHONPATH}
