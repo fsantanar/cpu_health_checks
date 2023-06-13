@@ -84,19 +84,19 @@ jobs:
       - name: Set up project (Windows)
         run: |
           echo "Original GITHUB Workspace variable:"
-          echo %github.workspace%
+          echo $env:GITHUB_WORKSPACE
           echo "Setting PYTHONPATH..."
           echo "Original Content of PYTHONPATH:"
-          echo %PYTHONPATH%
+          echo $env:PYTHONPATH
           echo "Original Content of GITHUB ENV:"
-          cat %GITHUB_ENV%
-          
-          for %%I in ("%github.workspace%") do set "PARENT_PATH=%%~dpI.."
-          echo "Parent folder: %PARENT_PATH%"
-          
-          echo "PYTHONPATH=%PARENT_PATH%" >> %GITHUB_ENV%
+          cat $env:GITHUB_ENV
+    
+          $parentPath = (Split-Path $env:GITHUB_WORKSPACE) -replace '\\$'
+          echo "Parent folder: $parentPath"
+    
+          echo "PYTHONPATH=$parentPath" >> $env:GITHUB_ENV
           echo "Content of GITHUB ENV after adding workspace parent:"
-          cat %GITHUB_ENV%
+          cat $env:GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
