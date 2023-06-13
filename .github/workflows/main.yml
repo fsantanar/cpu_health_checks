@@ -22,9 +22,13 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Set up project
+      - name: Set up project (Linux)
         run: |
+          echo "Original Content of GITHUB ENV in Linux"
+          cat ${GITHUB_ENV}
           echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
+          echo "Final Content of GITHUB ENV in Linux"
+          cat ${GITHUB_ENV}
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -50,9 +54,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Set up project
-        run: |
-          echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
+      - name: Set up project (macOS)
+        run: echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -78,9 +81,22 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Set up project
+      - name: Set up project (Windows)
         run: |
-          echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
+          echo "Original GITHUB Workspace variable:"
+          echo $env:GITHUB_WORKSPACE
+          echo "Setting PYTHONPATH..."
+          echo "Original Content of PYTHONPATH:"
+          echo $env:PYTHONPATH
+          echo "Original Content of GITHUB ENV:"
+          cat $env:GITHUB_ENV
+    
+          $parentPath = (Split-Path $env:GITHUB_WORKSPACE) -replace '\\$'
+          echo "Parent folder: $parentPath"
+    
+          echo "PYTHONPATH=$parentPath" >> $env:GITHUB_ENV
+          echo "Content of GITHUB ENV after adding workspace parent:"
+          cat $env:GITHUB_ENV
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
@@ -90,3 +106,5 @@ jobs:
 
       - name: Run tests (Windows)
         run: python -m unittest discover -s tests
+
+
