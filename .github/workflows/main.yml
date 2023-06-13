@@ -61,30 +61,30 @@ jobs:
       - name: Run tests (macOS)
         run: python -m unittest discover -s tests
 
-build-windows:
-  runs-on: windows-latest
+  build-windows:
+    runs-on: windows-latest
 
-  steps:
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
 
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-    - name: Set up project (Windows)
-      run: |
-        echo "PYTHONPATH=$(echo %cd%\..\)" >> $GITHUB_ENV
+      - name: Set up project (Windows)
+        run: |
+          echo "PYTHONPATH=$(echo %cd%\..\)" >> $GITHUB_ENV
 
-    - name: Run Flake8
-      run: flake8 --max-line-length=99
+      - name: Run Flake8
+        run: flake8 --max-line-length=99
 
-    - name: Run isort
-      run: isort .
+      - name: Run isort
+        run: isort .
 
-    - name: Run tests (Windows)
-      run: python -m unittest discover -s tests
+      - name: Run tests (Windows)
+        run: python -m unittest discover -s tests
