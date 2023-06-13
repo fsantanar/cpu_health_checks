@@ -84,12 +84,12 @@ jobs:
           echo "Original Content of GITHUB ENV:"
           echo ${env:GITHUB_ENV}
           echo "PYTHONPATH=${{ github.workspace }}\\.." >> ${env:GITHUB_ENV}
-          echo "Content of GITHUB ENV after adding workspace parent:
+          echo "Content of GITHUB ENV after adding workspace parent:"
           echo ${env:GITHUB_ENV}
           echo "Now setting the PYTHONPATH variable to:"
           echo ${env:PYTHONPATH}".replace("/", "\\")
           echo "PYTHONPATH=${env:PYTHONPATH}".replace("/", "\\") >> ${env:GITHUB_ENV}
-          echo "Content of GITHUB ENV after adding workspace parent with replaced slashes:
+          echo "Content of GITHUB ENV after adding workspace parent with replaced slashes:"
           echo ${env:GITHUB_ENV}
           echo "Now trying to get the content with cat in case echo didnt work"
           cat ${env:GITHUB_ENV}
