@@ -84,22 +84,19 @@ jobs:
       - name: Set up project (Windows)
         run: |
           echo "Original GITHUB Workspace variable:"
-          echo ${{ github.workspace}}
-          echo "Trying to replace text in workspace variable with Python replace"
-          echo "${{ github.workspace}}.replace('checks','ch')"
+          echo %github.workspace%
           echo "Setting PYTHONPATH..."
           echo "Original Content of PYTHONPATH:"
-          echo ${PYTHONPATH}
+          echo %PYTHONPATH%
           echo "Original Content of GITHUB ENV:"
-          cat ${env:GITHUB_ENV}
-          echo "PYTHONPATH=${{ github.workspace }}\\.." >> ${env:GITHUB_ENV}
+          cat %GITHUB_ENV%
+          
+          for %%I in ("%github.workspace%") do set "PARENT_PATH=%%~dpI.."
+          echo "Parent folder: %PARENT_PATH%"
+          
+          echo "PYTHONPATH=%PARENT_PATH%" >> %GITHUB_ENV%
           echo "Content of GITHUB ENV after adding workspace parent:"
-          cat ${env:GITHUB_ENV}
-          echo "Now setting the PYTHONPATH variable to:"
-          echo "${env:PYTHONPATH}.replace('/', '\\')"
-          echo "PYTHONPATH=${env:PYTHONPATH}.replace('/', '\\')" >> ${env:GITHUB_ENV}
-          echo "Content of GITHUB ENV after adding workspace parent with replaced slashes:"
-          cat ${env:GITHUB_ENV}
+          cat %GITHUB_ENV%
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
