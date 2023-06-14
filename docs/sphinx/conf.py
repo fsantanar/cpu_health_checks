@@ -21,8 +21,6 @@ release = '1.0'
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary', 'sphinx.ext.autosectionlabel']
 
-autodoc_mock_imports = ['cpu_health', 'utilities', 'tests.test_checks']
-
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
