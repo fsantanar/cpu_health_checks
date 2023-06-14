@@ -1,7 +1,13 @@
 Installing
 ==========
 
-To install the CPU Health Checks package, follow these steps:
+To install the CPU Health Checks package you can either use pip by typing
+
+   .. code-block:: bash
+
+      pip install cpu_health_checks
+
+Or you can follow these steps:
 
 1. Clone the repository using the following command:
 
