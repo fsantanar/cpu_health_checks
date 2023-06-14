@@ -1,10 +1,17 @@
 Package Content
 ===============
 
-.. toctree::
-   :maxdepth: 2
+.. automodule:: cpu_health
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
-   cpu_health
-   utilities
-   test_checks
+.. automodule:: utilities
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
+.. automodule:: tests.test_checks
+   :members:
+   :undoc-members:
+   :show-inheritance:
