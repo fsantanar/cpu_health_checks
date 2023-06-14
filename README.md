@@ -53,7 +53,7 @@ There are several ways to run the CPU health checks:
 
    Each check function returns True if the check passed and False otherwise.
 
-   2 Running all checks at once: You can run all the CPU health checks at once using the main() wrapper function. There are two ways to do this:
+2. Running all checks at once: You can run all the CPU health checks at once using the main() wrapper function. There are two ways to do this:
 
       a. Run the cpu_health.py module in interactive mode (e.g., with ipython or python -i) and then run main() using the desired input parameters to override the configuration file. For example:
 
