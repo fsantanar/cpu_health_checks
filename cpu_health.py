@@ -148,6 +148,12 @@ class CPUCheck:
         for key, val in input_values.items():
             setattr(self, key, val)  # Put all the values in the dictionary as object attributes
 
+        # Checks if the log folder exists
+        if not os.path.exists(self.logs_folder):
+            raise FileNotFoundError(f'Log folder {self.logs_folder} was not found. '
+                                    f'Please create it and make sure the logs_folder parameter\n'
+                                    f'is properly defined in the configuration file or when'
+                                    f' calling main() or CPUCheck()')
         # Determines the log filename based on important system properties
         log_filename = utilities.determines_log_filename()
         log_folder_and_name = os.path.join(self.logs_folder, log_filename)
