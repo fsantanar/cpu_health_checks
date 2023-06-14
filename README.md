@@ -16,7 +16,7 @@ pip install cpu_health_checks
 2. Cloning the repository: Alternatively, you can clone the CPU Health Checks repository from GitHub. This allows you to have access to the source code and run the modules directly. To clone the repository, use the following command:
 
 ```shell
-git clone https://github.com/fsantanar/cpu-health-checks.git```
+git clone https://github.com/fsantanar/cpu-health-checks.git
 ```
 Once you have cloned the repository, navigate to the cpu-health-checks directory.
 
@@ -33,7 +33,7 @@ You can also define multiple main keys in the configuration file to have differe
 ### Running CPU Health Checks
 There are several ways to run the CPU health checks:
 
-Running individual checks: You can create an instance of the CPUCheck class and call specific methods to perform individual CPU health checks. For example:
+1. Running individual checks: You can create an instance of the CPUCheck class and call specific methods to perform individual CPU health checks. For example:
 
 ```python
 import cpu_health_checks.cpu_health as cpu_health
@@ -46,24 +46,30 @@ checkobj.check_enough_disk_space()
 checkobj.check_enough_idle_usage()
 checkobj.check_network_connection()
 # ... add more checks as needed
-
 # Retrieve the results and take actions based on the returned values
+```
+
 Each check function returns True if the check passed and False otherwise.
 
-Running all checks at once: You can run all the CPU health checks at once using the main() wrapper function. There are two ways to do this:
+2. Running all checks at once: You can run all the CPU health checks at once using the main() wrapper function. There are two ways to do this:
 
 a. Run the cpu_health.py module in interactive mode (e.g., with ipython or python -i) and then run main() using the desired input parameters to override the configuration file. For example:
 
 
-python cpu_health.py
-python
-Copy code
+```console
+cpu_health.py
+```
+
+```python
 main(logs_folder='logs/linux/', latency_url='www.example.com')
+```
+
 b. Run the cpu_health.py module from the command line using the auto keyword. This will automatically use the default configuration parameters defined in the configuration file to create a CPUCheck object and perform all the health checks. For example:
 
-shell
-Copy code
+```console
 python cpu_health.py auto
+```
+
 Both methods generate logs in the specified logs folder, providing detailed information about the health check results.
 
 ### Interpreting Results
