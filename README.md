@@ -22,6 +22,8 @@ Once you have cloned the repository, navigate to the cpu-health-checks directory
 
 Note: If you choose this option, make sure to add the cpu-health-checks directory to your PYTHONPATH environment variable to be able to run the modules from any folder.
 
+If you have pip installed the cpu_health_checks package you would be able to import it using statements like `import cpu_health_checks.cpu_health as cpu_health`, `import cpu_health_checks.utilities as utilities`, and `import cpu_health_checks.tests.test_checks as test_checks. If you have git cloned the package you would also be able to run the main module directly by doing "python path/to/cpu_health_package/cpu_health.py" replacing "path/to/cpu_health_package/" with the actual package where the package is located.
+
 ## Usage
 The CPU Health Checks package provides a flexible and easy-to-use interface for monitoring your CPU health. Here's an overview of how to use the package and what results you can expect.
 
@@ -33,7 +35,7 @@ You can also define multiple main keys in the configuration file to have differe
 ### Running CPU Health Checks
 There are several ways to run the CPU health checks:
 
-1. Running individual checks: You can create an instance of the CPUCheck class and call specific methods to perform individual CPU health checks. For example:
+1 Running individual checks: You can create an instance of the CPUCheck class and call specific methods to perform individual CPU health checks. For example:
 
 ```python
 import cpu_health_checks.cpu_health as cpu_health
@@ -51,15 +53,16 @@ checkobj.check_network_connection()
 
 Each check function returns True if the check passed and False otherwise.
 
-2. Running all checks at once: You can run all the CPU health checks at once using the main() wrapper function. There are two ways to do this:
+2 Running all checks at once: You can run all the CPU health checks at once using the main() wrapper function. There are two ways to do this:
 
 a. Run the cpu_health.py module in interactive mode (e.g., with ipython or python -i) and then run main() using the desired input parameters to override the configuration file. For example:
 
-
+In the shell type
 ```console
-cpu_health.py
+python -i cpu_health.py
 ```
 
+And then in python type:
 ```python
 main(logs_folder='logs/linux/', latency_url='www.example.com')
 ```
@@ -80,15 +83,19 @@ Based on the results, you can take appropriate actions to resolve any identified
 ## Contribution
 If you would like to contribute to the development of CPU Health Checks, you can follow these steps:
 
-Fork the CPU Health Checks repository on GitHub.
-Clone your forked repository to your local machine.
-Create a new branch for your changes.
-Make the necessary changes and additions to the codebase.
-Test your changes thoroughly.
-Commit your changes and push them to your forked repository.
-Submit a pull request on the original CPU Health Checks repository.
+1. Fork the CPU Health Checks repository on GitHub.
+2. Clone your forked repository to your local machine.
+3. Create a new branch for your changes.
+4. Make the necessary changes and additions to the codebase.
+5. Test your changes thoroughly.
+6. Commit your changes and push them to your forked repository.
+7. Submit a pull request on the original CPU Health Checks repository.
+
 Please make sure to follow the coding style and guidelines specified in the repository to ensure consistency and maintainability.
 
 ## License
 CPU Health Checks is released under the MIT License. See the LICENSE file for more details.
 
+## Read The Docs Documentation
+
+For further documentation please refer to the Read The Docs webpage at [cpu-health-checks.readthedocs.io/](https://cpu-health-checks.readthedocs.io/en/)

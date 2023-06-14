@@ -31,7 +31,7 @@ those at at call time, as it is shown in the example.
 
 .. code-block:: bash
 
-   python cpu_health.py
+   python -i cpu_health.py
 
 .. code-block:: python
 
