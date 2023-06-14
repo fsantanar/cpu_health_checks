@@ -11,10 +11,12 @@ To install CPU Health Checks, you have two options:
 
    ```shell
    pip install cpu_health_checks
-Cloning the repository: Alternatively, you can clone the CPU Health Checks repository from GitHub. This allows you to have access to the source code and run the modules directly. To clone the repository, use the following command:
 
+2. Cloning the repository: Alternatively, you can clone the CPU Health Checks repository from GitHub. This allows you to have access to the source code and run the modules directly. To clone the repository, use the following command:
 
-git clone https://github.com/your-username/cpu-health-checks.git
+   ```shell
+   git clone https://github.com/fsantanar/cpu-health-checks.git
+
 Once you have cloned the repository, navigate to the cpu-health-checks directory.
 
 Note: If you choose this option, make sure to add the cpu-health-checks directory to your PYTHONPATH environment variable to be able to run the modules from any folder.
