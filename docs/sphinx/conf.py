@@ -1,11 +1,11 @@
 import os
 import sys
 
-# Add the path to project's root directory
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Add the path to project's root directory parent
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
 # Add the path to module(s)
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..',
                                                 'cpu_health_checks')))
 
 # Configuration file for the Sphinx documentation builder.
