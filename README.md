@@ -1,3 +1,4 @@
+![Alt Text](docs/sphinx/_static/CPU_Health_Cheks.jpg)
 
 # CPU Health Checks
 
