@@ -7,7 +7,7 @@ CPU Health Checks is a comprehensive software package that allows you to perform
 
 To install CPU Health Checks, you have two options:
 
-1. Using pip: You can install the package using pip by running the following command:
+1. Using pip (Not Available for the Moment but Will be Available Soon): You can install the package using pip by running the following command:
 
 ```console
 pip install cpu_health_checks
