@@ -26,12 +26,12 @@ jobs:
         run: |
           echo "Original Content of GITHUB ENV in Linux"
           cat ${GITHUB_ENV}
-          echo "PYTHONPATH=${{ github.workspace }}/.." >> $GITHUB_ENV
+          echo "PYTHONPATH=${{ github.workspace }}/../../.." >> $GITHUB_ENV
           echo "Final Content of GITHUB ENV in Linux"
           cat ${GITHUB_ENV}
 
       - name: Run Flake8
-        run: flake8 --max-line-length=99 --ignore=E402
+        run: flake8 --max-line-length=99
 
       - name: Run isort
         run: isort .
