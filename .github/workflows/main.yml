@@ -23,12 +23,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Set up project (Linux)
-        run: |
-          echo "Original Content of GITHUB ENV in Linux"
-          cat ${GITHUB_ENV}
-          echo "PYTHONPATH=/home/runner/work/" >> $GITHUB_ENV
-          echo "Final Content of GITHUB ENV in Linux"
-          cat ${GITHUB_ENV}
+        run: python setup.py develop
 
       - name: Run Flake8
         run: flake8 --max-line-length=99
