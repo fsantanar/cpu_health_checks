@@ -31,7 +31,7 @@ Then install the cloned repo with pip
 pip install .
 ```
 
-Finally, go to the folder with the python modules and test the package running the main() function in cpu_health module using the "auto" option
+Finally, go to the folder with the python modules and test the package running the main() function in the cpu_health module using the "auto" option
 
 ```shell
 cd src/cpu_health_checks

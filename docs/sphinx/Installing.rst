@@ -1,13 +1,13 @@
 Installing
 ==========
 
-To install the CPU Health Checks package you can either use pip by typing
+To install the CPU Health Checks package you can either use PyPI (Not Available for the Moment but Will be Available Soon) typing
 
    .. code-block:: bash
 
       pip install cpu_health_checks
 
-Or you can follow these steps:
+Installing from Source using Git Clone following these steps:
 
 1. Clone the repository using the following command:
 
@@ -29,37 +29,16 @@ Or you can follow these steps:
 
       cd cpu_health_checks
 
-3. Install the package dependencies:
+3. Install the package:
 
    .. code-block:: bash
 
-      pip install -r requirements.txt
+      pip install .
 
-4. Add the folder containing the package to your PYTHONPATH environmental variable in your shell 
-   configuration file.
+4. Go to the folder with the python modules and test the package running the main() function in the cpu_health module using the "auto" option.
 
-   Depending on your shell (which you can check with "echo $SHELL"), you can use:
+   .. code-block:: bash
 
-   - For Bash:
+      cd src/cpu_health_checks
+      python cpu_health.pt auto
 
-     .. code-block:: bash
-
-        export PYTHONPATH="/path/to/folder:$PYTHONPATH"
-
-   - For Fish:
-
-     .. code-block:: fish
-
-        set -gx PYTHONPATH "/path/to/folder" $PYTHONPATH
-
-   - For PowerShell:
-
-     .. code-block:: powershell
-
-        $env:PYTHONPATH = "/path/to/folder;$env:PYTHONPATH"
-
-   Replace ``/path/to/folder`` with the folder where the "cpu_health_checks" package is located
-   (i.e., its parent folder).
-
-   This will install all the required dependencies for the CPU Health Checks package. Following these
-   4 simple steps, the package will now be ready for use.
