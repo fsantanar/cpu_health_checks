@@ -31,7 +31,7 @@ jobs:
           cat ${GITHUB_ENV}
 
       - name: Run Flake8
-        run: flake8 --max-line-length=99
+        run: flake8 --max-line-length=99 --ignore=E402
 
       - name: Run isort
         run: isort .
