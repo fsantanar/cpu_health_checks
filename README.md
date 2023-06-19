@@ -25,13 +25,13 @@ Once you have cloned the repository, navigate to the cpu-health-checks directory
 cd cpu_health_checks
 ```
 
-And then install the cloned repo with pip
+Then install the cloned repo with pip
 
 ```shell
 pip install .
 ```
 
-Go to the folder with the python modules and test the package running the main() function in cpu_health module using the "auto" option
+Finally, go to the folder with the python modules and test the package running the main() function in cpu_health module using the "auto" option
 
 ```shell
 cd src/cpu_health_checks
@@ -41,9 +41,8 @@ python cpu_health.py auto
 Which should perform the CPU health checks on your computer.
 
 Once you have installed the cpu_health_checks package you would be able to import it from any folder using statements like `import cpu_health_checks.cpu_health as cpu_health`, or `import cpu_health_checks.utilities as utilities`. When importing the modules make sure that the "config_file" parameter in the CPUCheck class constructor (by default '../../config/configuration.yml')
-Points to the configuration file with respect to the folder where the module is being run, if the default value is not correct use it as input parameter when calling CPUCheck() constructor (e.g. CPUCheck(config_file='config/configuration.yml') or the main() function. Also make sure that the "logs_folder" parameter points to the logs folder with respect to the folder where the module is being run. 
-By default this parameter is set to '../../logs/' in the configuration.yml file, but if you need to change it, edit the value in the configuration file, or use it as input parameter when calling the CPUCheck() constructor or the main() function.
-If you have git cloned the package you would also be able to run the main module directly by doing "python path/to/cpu_health_module_folder/cpu_health.py" replacing "path/to/cpu_health_module_folder/" with the actual folder containing the cpu_health.py module (which should be in the folder src/cpu_health_checks/ folder within the root folder of the project).
+points to the configuration file relative to the folder where the module is being run, if the default value is not correct use "config_file" as input parameter when calling CPUCheck() constructor (e.g. CPUCheck(config_file='config/configuration.yml') or the main() function to define the correct value. Also make sure that the "logs_folder" parameter points to the logs folder relative to the folder where the module is being run. By default this parameter is set to '../../logs/' in the configuration.yml file, but if you need to change it, edit the value in the configuration file, or use "logs_folder" as input parameter when calling the CPUCheck() constructor or the main() function to define the correct value.
+If you have git cloned the package you would also be able to run the Python modules directly by doing "python path/to/cpu_health_module_folder/cpu_health.py" replacing "path/to/cpu_health_module_folder/" with the actual folder containing the cpu_health.py module (which should be in the folder src/cpu_health_checks/ folder within the root folder of the project).
 
 ## Usage
 The CPU Health Checks package provides a flexible and easy-to-use interface for monitoring your CPU health. Here's an overview of how to use the package and what results you can expect.
@@ -54,7 +53,7 @@ CPU Health Checks uses a YAML configuration file (configuration.yml) to specify 
 You can also define multiple main keys in the configuration file to have different sets of parameters for specific use cases. To use a specific main key, you can specify it when calling the CPUCheck() constructor or the main() wrapper function.
 
 ### Running CPU Health Checks
-There are several ways to run the CPU health checks:
+The main ways to run the CPU health checks are the following:
 
 1. Running individual checks: You can create an instance of the CPUCheck class and call specific methods to perform individual CPU health checks. For example:
 
@@ -83,22 +82,22 @@ There are several ways to run the CPU health checks:
       import cpu_health_checks.cpu_health as cpu_health
       ```
 
-      And then call the main function overriding the desired parameters. Remember to make sure that default values for "config_file" and "logs_folder" are appropriate given the folder you are running the module, or otherwise define them explicitly as input parameters of the main() function.
+      And then call the main function overriding the desired parameters. Remember to make sure that default values for "config_file" and "logs_folder" are appropriate given the folder you are running the module, or otherwise define them explicitly as input parameters of the main() function. For example:
 
       ```python
       result = cpu_health.main(logs_folder='logs/linux/', latency_url='www.example.com')
       ```
 
-      Changing "logs_folder" and "latency_url" for the actual input parameters you want to override form the configuration file.
+      When doing this change "logs_folder" and "latency_url" for the actual input parameters you want to override form the configuration file.
       Here "result" will then be a dictionary with the keys having the names of the checks performed and the values will be the results of each test.
 
-      If you have git cloned the repo you can do the same thing going to the src/cpu_health_checks/ folder containing the Python modules, run the cpu_health.py module interactively in python and then use its main() function. For example:
+      If you have git cloned the repo you can do the same thing going to the src/cpu_health_checks/ folder containing the Python modules, running the cpu_health.py module interactively in python and then using its main() function. For example:
 
       ```shell
-      python -i cpu_health.py auto
+      python -i cpu_health.py
       ```
 
-      And then in Python type:
+      And then in Python typing:
       ```python
       main(logs_folder='logs/linux/', latency_url='www.example.com')
       ```
