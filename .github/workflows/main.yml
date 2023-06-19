@@ -26,7 +26,7 @@ jobs:
         run: |
           echo "Original Content of GITHUB ENV in Linux"
           cat ${GITHUB_ENV}
-          echo "PYTHONPATH=${{ github.workspace }}/../../.." >> $GITHUB_ENV
+          echo "PYTHONPATH=/home/runner/work/" >> $GITHUB_ENV
           echo "Final Content of GITHUB ENV in Linux"
           cat ${GITHUB_ENV}
 
