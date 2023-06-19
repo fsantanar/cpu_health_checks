@@ -487,7 +487,7 @@ def main(**kwargs):
         ind_check += 1
 
     print(' ')
-    print('#'*28)
+    print('#' * 28)
     print('###  ', end='')
 
     if all_passed:
@@ -496,7 +496,7 @@ def main(**kwargs):
         utilities.print_error(f'{fails:02} check(s) failed', new_line=False)
 
     print('  ###')
-    print('#'*28)
+    print('#' * 28)
     checkobj.logger.info("Finished main function")
     return results
 
