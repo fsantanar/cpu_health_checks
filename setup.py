@@ -6,7 +6,7 @@ setup(
     author='Felipe Santana Rojas',
     description='Package to make a series of CPU health checks',
     packages=find_packages('src'),
-    package_dir={'':'src'},
+    package_dir={'': 'src'},
     install_requires=[
         'numpy==1.24.3',
         'psutil==5.9.0',
