@@ -1,7 +1,7 @@
 'default':
 
   # General
-  logs_folder: 'logs/'
+  logs_folder: '../../logs/'
 
   # check_enough_disk_space
   min_gb: 2

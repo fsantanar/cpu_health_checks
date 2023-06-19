@@ -1,17 +1,19 @@
 Package Content
 ===============
 
-.. automodule:: cpu_health
+cpu_health Main Module
+-----------------------
+
+.. automodule:: cpu_health_checks.cpu_health
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. automodule:: utilities
+utilities Complementary Module 
+-------------------------------
+
+.. automodule:: cpu_health_checks.utilities
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. automodule:: tests.test_checks
-    :members:
-    :undoc-members:
-    :show-inheritance:

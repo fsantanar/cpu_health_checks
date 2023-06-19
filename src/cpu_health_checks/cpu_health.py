@@ -36,7 +36,7 @@ class CPUCheck:
 
     """
 
-    def __init__(self, config_file='config/configuration.yml', config_mode='default',
+    def __init__(self, config_file='../../config/configuration.yml', config_mode='default',
                  logs_folder=None, min_gb=None, min_percent_disk=None, folders_to_print=None,
                  max_cpu_usage=None, website_to_check=None, max_connection_attempts=None,
                  file_sizes_to_download=None, block_size=None, sleep_time=None,
@@ -487,7 +487,7 @@ def main(**kwargs):
         ind_check += 1
 
     print(' ')
-    print('#'*28)
+    print('#' * 28)
     print('###  ', end='')
 
     if all_passed:
@@ -496,7 +496,7 @@ def main(**kwargs):
         utilities.print_error(f'{fails:02} check(s) failed', new_line=False)
 
     print('  ###')
-    print('#'*28)
+    print('#' * 28)
     checkobj.logger.info("Finished main function")
     return results
 
