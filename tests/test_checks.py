@@ -55,6 +55,9 @@ class SystemTestCase(unittest.TestCase):
         Raises:
             AssertionError: If the code execution fails with an exception.
         """
+        print(" ")
+        print(f"speed_log_filename: {self.cpu_check.speed_log_filename}")
+        print(" ")
         try:
             result = cpu_health.main(min_gb=0, min_percent_disk=0, folders_to_print=0,
                                      max_cpu_usage=0, max_connection_attempts=1,
@@ -65,7 +68,6 @@ class SystemTestCase(unittest.TestCase):
                                      config_file=self.config_file_path,
                                      logs_folder=self.logs_folder_path)
         except Exception as e:
-            print(f"speed_log_filename: {self.cpu_check.speed_log_filename}")
             self.fail(f"Code execution failed with exception: {str(e)}")
 
         self.assertTrue(result['check_enough_disk_space'], 'check_enough_disk_space is not True')
