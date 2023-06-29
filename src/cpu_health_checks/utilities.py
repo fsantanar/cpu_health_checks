@@ -302,10 +302,8 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
     speed_log.write(f'{download_time:18.2f} {download_speed_mbps:21.2f}')
     speed_log.close()
 
-    # Here we check how many download test have been performed previously
-    wordcount_command = f'wc -l {speed_log_filename}'
-    with os.popen(wordcount_command) as wc_proc:
-        lines_in_log = int(wc_proc.read().split()[0])
+    # Here we check how many download test have been performed before
+    lines_in_log = len(np.loadtxt(f'{speed_log_filename}', usecols=[0], skiprows=1))
 
     # If there are not enough previous test to perform a significant comparison between the current
     # results and prior results, then it doesn't make the comparison and prints a warning message
@@ -323,9 +321,8 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
     err_msg = ''
 
     if enough_previous_tests:
-        with os.popen(f"awk '{{print $6}}' {speed_log_filename}") as prior_speeds_proc:
-            prior_speeds_command_output = prior_speeds_proc.read().split()[1:-1]
-        prior_speeds = list(map(float, prior_speeds_command_output))
+
+        prior_speeds = np.loadtxt(speed_log_filename, usecols=[5], skiprows=1)[:-1]
         avg_speed, speed_std = np.average(prior_speeds), np.std(prior_speeds)
 
         if download_speed_mbps < (avg_speed - std_deviations_limit * speed_std):
