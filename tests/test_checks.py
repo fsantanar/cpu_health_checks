@@ -67,7 +67,7 @@ class SystemTestCase(unittest.TestCase):
         except Exception as e:
             self.fail(f"Code execution failed with exception: {str(e)}")
 
-        print(f"speed_log_filename: {speed_log_filename}")
+        print(f"speed_log_filename: {self.cpu_check.speed_log_filename}")
         print(f"result: {result}")
 
         self.assertTrue(result['check_enough_disk_space'], 'check_enough_disk_space is not True')
