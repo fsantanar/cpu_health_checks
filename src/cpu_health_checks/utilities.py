@@ -303,7 +303,7 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
     speed_log.close()
 
     # Here we check how many download test have been performed before
-    lines_in_log = len(np.loadtxt(f'{speed_log_filename}', usecols=[0], skiprows=1))
+    lines_in_log = len(np.loadtxt(speed_log_filename, usecols=[0], skiprows=1))
 
     # If there are not enough previous test to perform a significant comparison between the current
     # results and prior results, then it doesn't make the comparison and prints a warning message
