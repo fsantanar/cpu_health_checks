@@ -284,7 +284,7 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
     Returns:
         bool: True if there is an error, False otherwise.
     """
-
+    print('Inside handle final download test')
     speed_log_filename = f'{logs_folder}/{speed_log_filename}'
     print(' ')
     print(speed_log_filename)

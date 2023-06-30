@@ -49,9 +49,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Print installed packages
-        run: pip list
-
       - name: Set up project (macOS)
         run: python setup.py develop
 
