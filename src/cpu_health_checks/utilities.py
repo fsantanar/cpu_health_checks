@@ -284,12 +284,7 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
     Returns:
         bool: True if there is an error, False otherwise.
     """
-    print('Inside handle final download test')
-    speed_log_filename = f'{logs_folder}/{speed_log_filename}'
-    print(' ')
-    print(speed_log_filename)
-    print(' ')
-    print(' ')
+
     log_file_exits = os.path.isfile(speed_log_filename)
     local_time = time.localtime(time.time())
 
@@ -306,14 +301,12 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
     speed_log.write(f'{download_time:18.2f} {download_speed_mbps:21.2f}')
     speed_log.close()
 
-    # Old way to check how many download test have been performed previously
-    wordcount_command = f'wc -l {speed_log_filename}'
-    with os.popen(wordcount_command) as wc_proc:
-        lines_in_log_old = int(wc_proc.read().split()[0])
-    print(f'Old lines in log result {lines_in_log_old}')
-
     # Here we check how many download test have been performed before
-    lines_in_log = len(np.loadtxt(speed_log_filename, usecols=[0], skiprows=1))
+    speedlog = np.loadtxt(speed_log_filename, usecols=[0], skiprows=1)
+    if np.ndim(speedlog) == 0:  # If it is just one line we set line numbers manually
+        lines_in_log = 1
+    else:  # Otherwise we calculate it as the number of lines in the array
+        lines_in_log = len(speedlog)
 
     # If there are not enough previous test to perform a significant comparison between the current
     # results and prior results, then it doesn't make the comparison and prints a warning message

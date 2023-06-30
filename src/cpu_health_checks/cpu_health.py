@@ -291,7 +291,6 @@ class CPUCheck:
             if is_last_test or download_time > 10 * self.minimum_download_time:
                 main_message = (f'Downloaded at an average speed of {download_speed_mbps:.3f}'
                                 f'Mb/s: {download_time:.2f} secs for a {megas:.1f} Mb file')
-                print('running handle final download test')
                 result = utilities.handle_final_download_test(self.logs_folder,
                                                               self.speed_log_filename, size,
                                                               download_time, download_speed_mbps,

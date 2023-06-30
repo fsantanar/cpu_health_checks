@@ -55,10 +55,6 @@ class SystemTestCase(unittest.TestCase):
         Raises:
             AssertionError: If the code execution fails with an exception.
         """
-        print(" ")
-        print(f"speedlog path and filename:"
-              f"{self.cpu_check.logs_folder}/{self.cpu_check.speed_log_filename}")
-        print(" ")
         try:
             result = cpu_health.main(min_gb=0, min_percent_disk=0, folders_to_print=0,
                                      max_cpu_usage=0, max_connection_attempts=1,
