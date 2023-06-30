@@ -35,10 +35,14 @@ Or you can Install from Source using Git Clone following these steps:
 
       pip install .
 
+   Note: If you want to install in developer mode and modify the modules locally without needing to pip install each time add the "-e" option after "pip install".
+
 4. Go to the folder with the python modules and test the package running the main() function in the cpu_health module using the "auto" option.
 
    .. code-block:: bash
 
       cd src/cpu_health_checks
-      python cpu_health.pt auto
+      python cpu_health.py auto
+
+   Which should perform the CPU health checks on your computer.
 
