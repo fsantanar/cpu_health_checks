@@ -491,7 +491,7 @@ def main(**kwargs):
     print('###  ', end='')
 
     if all_passed:
-        utilities.print_message('All checks passed', new_line=False)
+        utilities.print_message('All checks passed ', new_line=False)
     else:
         utilities.print_error(f'{fails:02} check(s) failed', new_line=False)
 

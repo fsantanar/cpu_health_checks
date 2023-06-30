@@ -285,6 +285,7 @@ def handle_final_download_test(logs_folder, speed_log_filename, size, download_t
         bool: True if there is an error, False otherwise.
     """
 
+    speed_log_filename = f'{logs_folder}/{speed_log_filename}'
     log_file_exits = os.path.isfile(speed_log_filename)
     local_time = time.localtime(time.time())
 
