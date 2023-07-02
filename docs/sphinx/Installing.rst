@@ -1,13 +1,7 @@
 Installing
 ==========
 
-To install the CPU Health Checks package you can either use PyPI (Not Available for the Moment but Will be Available Soon) typing
-
-   .. code-block:: bash
-
-      pip install cpu_health_checks
-
-Or you can Install from Source using Git Clone following these steps:
+To install the CPU Health Checks package you need to Install from Source using Git Clone following these steps:
 
 1. Clone the repository using the following command:
 

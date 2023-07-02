@@ -6,15 +6,7 @@ CPU Health Checks is a comprehensive software package that allows you to perform
 
 ## Installation
 
-To install CPU Health Checks, you have two options:
-
-1. Installing from PyPI (Not Available for the Moment but Will be Available Soon): You can install the package using pip by running the following command:
-
-```console
-pip install cpu_health_checks
-```
-
-2. Installing from Source (Git Clone): Alternatively, you can clone the CPU Health Checks repository from GitHub and pip install from there. This allows you to clearly see the components of the package and if you like edit them as you want. To clone the repository, use the following command:
+To install CPU Health Checks, you need to clone the CPU Health Checks repository from GitHub and pip install from there. This allows you to clearly see the components of the package and if you like edit them as you want. To clone the repository, use the following command:
 
 ```shell
 git clone https://github.com/fsantanar/cpu_health_checks.git
@@ -75,7 +67,7 @@ The main ways to run the CPU health checks are the following:
 
    Each check function returns True if the check passed and False otherwise.
 
-   Remember that if you have git cloned the package you can also do this by running the cpu_health.py module from the terminal using python interactive mode and then in the python interpreter create the object doing for example checkobj = CPUCheck().
+   You can also do this by running the cpu_health.py module from the terminal using python interactive mode and then in the python interpreter create the object doing for example checkobj = CPUCheck().
 
 2. Running all checks at once: You can run all the CPU health checks at once using the main() wrapper function. There are two ways to do this:
 
@@ -92,7 +84,7 @@ The main ways to run the CPU health checks are the following:
       main()
       ```
 
-      If you have git cloned the repo you can do this in a single step without needing to use python interactively by just going to the folder containing the Python modules and running the cpu_health.py module using the "auto" option when running the module:
+      You can also do this in a single step without needing to use python interactively by just going to the folder containing the Python modules and running the cpu_health.py module using the "auto" option when running the module:
 
       ```shell
       python cpu_health.py auto
@@ -114,7 +106,7 @@ The main ways to run the CPU health checks are the following:
       When doing this, change "logs_folder" and "latency_url" for the actual input parameters you want to override form the configuration file.
       Here "result" will then be a dictionary with the keys having the names of the checks performed and the values will be the results of each test.
 
-      If you have git cloned the repo you can do the same running cpu_health.py in python interactive mode and then typing "main(logs_folder='logs/linux/', latency_url='www.example.com')" in the python interpreter.
+      You can also do the same running cpu_health.py in python interactive mode and then typing "main(logs_folder='logs/linux/', latency_url='www.example.com')" in the python interpreter.
 
 
 Both methods generate logs in the specified logs folder and print messages on screen with the results of the checks, providing detailed information about the cpu health check results.
@@ -143,3 +135,40 @@ CPU Health Checks is released under the MIT License. See the LICENSE file for mo
 ## Read The Docs Documentation
 
 For further documentation please refer to the Read The Docs webpage at [cpu-health-checks.readthedocs.io/](https://cpu-health-checks.readthedocs.io/en/)
+
+## Coding Standards
+
+We take pride in following industry best practices and maintaining high coding standards. Here are some key aspects that showcase the robustness and reliability of our package:
+
+### 1. Code Modularity
+Our package is designed with a modular approach, allowing each functionality to be encapsulated specific purpose functions/method within separate modules. This enhances maintainability and code readability, making it easy for developers to understand and contribute to the project.
+
+### 2. Exception Handling & Raising
+We adhere to proper exception handling throughout the codebase. This ensures graceful error handling, providing informative error messages for debugging and troubleshooting.
+
+### 3. Unit Testing
+The package includes comprehensive unit tests that validate the correctness of each module's functionality. Continuous integration with GitHub Actions ensures that tests are automatically run on Linux, macOS, and Windows platforms, ensuring cross-platform compatibility.
+
+### 4. Platform Compatibility
+Our package is designed to work seamlessly on all major platforms, including Linux, macOS, and Windows. This allows users to run our code on their preferred operating system without any hassle.
+
+### 5. Logging of Results
+We maintain detailed logs of our package's execution, allowing users to track and review the results of CPU health checks effortlessly. The logging mechanism is configurable, providing flexibility in managing log levels and output destinations.
+
+### 6. Easy and Flexible to Use
+We strive to offer a user-friendly experience for our package. Users can execute CPU health checks from the terminal, use default input parameters, pass parameters during function calls, or configure settings through a user-friendly config file.
+
+### 7. Continuous Integration with GitHub Actions
+Our development workflow includes a GitHub Actions workflow that automatically checks linting and runs unit tests on all three major platforms. This ensures that every pull request is thoroughly validated before merging into the main branch.
+
+### 8. Protected Branch Rule
+To maintain code integrity and quality, we enforce a branch protection rule that requires pull requests and owner authorization to merge changes into the main branch. This guarantees that only well-reviewed and approved code makes it to the main branch.
+
+### 9. Comprehensive Documentation
+We believe that good documentation is essential for a successful project. Our code is well-documented with clear and concise docstrings, providing insights into each module's functionality. We generate documentation locally using Sphinx, and it's also available online through Read the Docs, making it easy for users and developers to understand and utilize our package effectively.
+
+### 10. Easy Installation with Pip
+We ensure a smooth installation process through the setup.py file, allowing users to install our package effortlessly using Pip.
+
+We are committed to maintaining these coding standards and continuously improving our package to provide the best possible experience for our users and contributors.
+
