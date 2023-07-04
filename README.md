@@ -128,17 +128,24 @@ After running the CPU health checks, you can interpret the results based on the 
 Based on the results, you can take appropriate actions to resolve any identified issues. For example, if the disk space check fails, you can free up disk space by removing unnecessary files or expanding the storage capacity.
 
 ## Contribution
-If you would like to contribute to the development of CPU Health Checks, you can follow these steps:
+If you would like to contribute to the development of CPU Health Checks the first alternative is to create an issue if you spot something that you think that needs to be checked or you think about a new interesting feature/adding
 
-1. Fork the CPU Health Checks repository on GitHub.
-2. Clone your forked repository to your local machine.
-3. Create a new branch for your changes.
-4. Make the necessary changes and additions to the codebase.
-5. Test your changes thoroughly.
-6. Commit your changes and push them to your forked repository.
-7. Submit a pull request on the original CPU Health Checks repository.
+If you want to go one step farther you can contribute your own piece of code following these steps:
+
+1. Fork the CPU Health Checks repository on GitHub with the fork button.
+2. Clone your forked repository to your local machine with "git clone (fork_repo_name)".
+3. Create a new branch for your changes, for example "suggestions" with command "git checkout -b suggestions".
+4. Make the necessary changes and additions to the codebase on your new local branch.
+5. Test your changes thoroughly. To help with that you can run the unit test module test_checks.py
+6. Commit your changes to your new local branch with "git commit -a -m (commit_message)" using a commit_message describing your changes.
+7. Create a remote version of your new local branch in your fork repo with "git push -u origin (branch_name)" replacing with the branch name you used for your new branch
+8. Submit a pull request from your new remote branch in your fork repo into the main branch in the original CPU Health Checks repository.
 
 Please make sure to follow the coding style and guidelines specified in the repository to ensure consistency and maintainability.
+
+After these steps GitHub Actions Workflow will check if the linting with flake8 is correct (for example checking max characters per line in the modules) and that the tests pass. Finally, a code owner will review the pull request and decide to approve the merge or not.
+
+For any doubts please contact Felipe Santana at fsantanar@gmail.com
 
 ## License
 CPU Health Checks is released under the MIT License. See the LICENSE file for more details.
