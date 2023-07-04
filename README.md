@@ -38,6 +38,17 @@ Once you have installed the cpu_health_checks package you would be able to impor
 
 Even though you can run these modules from any folder, when running from a folder different than the modules location you have to make sure that the "config_file" parameter in the CPUCheck class constructor (by default '../../config/configuration.yml') points to the configuration file relative to the folder where the module is being run, if the default value is not correct use "config_file" as input parameter when calling CPUCheck() constructor (e.g. CPUCheck(config_file='config/configuration.yml') if you are running from package root folder) or the main() function to define the correct value. Also make sure that the "logs_folder" parameter points to the logs folder relative to the folder where the module is being run. By default this parameter is set to '../../logs/' in the configuration.yml file, but if you need to change it, edit the value in the configuration file, or use "logs_folder" as input parameter when calling the CPUCheck() constructor or the main() function to define the correct value (e.g. CPUCheck(logs_folder='cpu_health_checks/logs/') if you are running from parent folder of the package root).
 
+## Updating
+
+If you want to update the package to a newer version you need to go to the root folder of the package, checkout to your local main branch, then pull the remote main branch, and install again with pip install. Below are the specific commands
+
+```shell
+cd cpu_health_checks
+git checkout main
+git pull origin main
+pip install .
+```
+
 ## Usage
 The CPU Health Checks package provides a flexible and easy-to-use interface for monitoring your CPU health. Here's an overview of how to use the package and what results you can expect.
 
